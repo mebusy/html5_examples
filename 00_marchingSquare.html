@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Cocos2d-JS</title> 
+    <script type="text/javascript" src="cocos2d-js-v3.8-lite.js" charset="UTF-8"></script>
+</head>
+<body>   
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <script type="text/javascript">
+          window.onload = function(){
+              cc.game.onStart = function(){
+ 
+                  cc.LoaderScene.preload( all_preload_res , function () {
+                      //cc.log( g_resources )
+                      var size = cc.view.getFrameSize()
+                      cc.view.setDesignResolutionSize(400, 400, cc.ResolutionPolicy.SHOW_ALL );
+                      cc.view.resizeWithBrowserSize(true);
+
+                      origin = cc.director.getVisibleOrigin();  // 设置或获取游戏世界可视窗口的原点和大小
+                      visibleSize = cc.director.getVisibleSize();
+
+                      //*
+                      cc.view.setResizeCallback(function() {
+                          // 做任何你所需要的游戏内容层面的适配操作
+                          // 比如说，你可以针对用户的移动设备方向来决定所要应用的适配模式
+                          // 注意，拖动一次浏览器，可能会发出 好几个  setResizeCallback
+                          //cc.log("screen resized")
+                          var size = cc.view.getFrameSize()
+                          cc.view.setDesignResolutionSize(400, 400, cc.ResolutionPolicy.SHOW_ALL );
+
+                          origin = cc.director.getVisibleOrigin();  // 设置或获取游戏世界可视窗口的原点和大小
+                          visibleSize = cc.director.getVisibleSize();
+
+                          //cc.log( "setResizeCallback" , size.width ,size.height , size.height/ size.width  < 1.4 ? cc.ResolutionPolicy.SHOW_ALL : cc.ResolutionPolicy.FIXED_WIDTH  )
+
+                      });
+                      //*/
+
+                      cc.director.runScene(new marchingSquareScene());
+                  }, this);
+                  //*/
+              };
+              cc.game.run("gameCanvas");
+          };
+    </script>
+</body>
+</html>

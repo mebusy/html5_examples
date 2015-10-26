@@ -10,5 +10,6 @@
     	"src/game/resource.js" ,
         "src/game/mylib.js" ,
     	"src/scene/loginScene.js"
+        "src/scene/marchingSquareScene.js"
     ]
 }
