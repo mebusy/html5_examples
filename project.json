@@ -1,0 +1,14 @@
+{
+    "debugMode"     : 1,
+    "frameRate"     : 30,
+    "id"            : "gameCanvas",
+    "renderMode"    : 0,
+    "showFPS"		: 1,
+    "jsList"        : [
+        "src/game/js-ext.js" ,
+        "src/game/game_config.js" ,
+    	"src/game/resource.js" ,
+        "src/game/mylib.js" ,
+    	"src/scene/loginScene.js"
+    ]
+}

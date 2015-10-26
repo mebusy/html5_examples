@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Cocos2d-JS</title> 
+    <script type="text/javascript" src="cocos2d-js-v3.8.js" charset="UTF-8"></script>
+</head>
+<body>   
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+    <script type="text/javascript">
+          window.onload = function(){
+              cc.game.onStart = function(){
+                  /*
+                  //load resources
+                  cc.LoaderScene.preload(["HelloWorld.png"], function () {
+                      var MyScene = cc.Scene.extend({
+                          onEnter:function () {
+                              this._super();
+                              var size = cc.director.getWinSize();
+                              var sprite = cc.Sprite.create("HelloWorld.png");
+                              sprite.setPosition(size.width / 2, size.height / 2);
+                              sprite.setScale(0.8);
+                              this.addChild(sprite, 0);
+
+                              var label = cc.LabelTTF.create("Hello World", "Arial", 40);
+                              label.setPosition(size.width / 2, size.height / 2);
+                              this.addChild(label, 1);
+                          }
+                      });
+                      cc.director.runScene(new MyScene());
+                  }, this);
+                  /*/
+
+                  //在入口函数中建议开发者利用cc.LoaderScene.preload函数对资源进行预加载， 并在回调函数中进入游戏首个场景。
+                  //由于Web引擎中资源加载是异步的，预加载是非常必要的
+ 
+                  cc.LoaderScene.preload( all_preload_res , function () {
+                      //cc.log( g_resources )
+                      var size = cc.view.getFrameSize()
+                      cc.view.setDesignResolutionSize(640, 960, size.height/ size.width  < 1.4 ? cc.ResolutionPolicy.SHOW_ALL : cc.ResolutionPolicy.FIXED_WIDTH );
+                      cc.view.resizeWithBrowserSize(true);
+
+                      origin = cc.director.getVisibleOrigin();  // 设置或获取游戏世界可视窗口的原点和大小
+                      visibleSize = cc.director.getVisibleSize();
+
+                      //*
+                      cc.view.setResizeCallback(function() {
+                          // 做任何你所需要的游戏内容层面的适配操作
+                          // 比如说，你可以针对用户的移动设备方向来决定所要应用的适配模式
+                          // 注意，拖动一次浏览器，可能会发出 好几个  setResizeCallback
+                          //cc.log("screen resized")
+                          var size = cc.view.getFrameSize()
+                          cc.view.setDesignResolutionSize(640, 960, size.height/ size.width  < 1.4 ? cc.ResolutionPolicy.SHOW_ALL : cc.ResolutionPolicy.FIXED_WIDTH );
+
+                          origin = cc.director.getVisibleOrigin();  // 设置或获取游戏世界可视窗口的原点和大小
+                          visibleSize = cc.director.getVisibleSize();
+
+                          //cc.log( "setResizeCallback" , size.width ,size.height , size.height/ size.width  < 1.4 ? cc.ResolutionPolicy.SHOW_ALL : cc.ResolutionPolicy.FIXED_WIDTH  )
+
+                      });
+                      //*/
+
+                      cc.director.runScene(new loginScene());
+                  }, this);
+                  //*/
+              };
+              cc.game.run("gameCanvas");
+          };
+    </script>
+</body>
+</html>
