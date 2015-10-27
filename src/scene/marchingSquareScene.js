@@ -15,13 +15,34 @@ function createMSLayer() {
 	var node_pos = [  [ MARGIN , MARGIN + ( visibleSize.height - MARGIN*2 ) ] , [ MARGIN + ( visibleSize.width - MARGIN*2 ) , MARGIN + ( visibleSize.height - MARGIN*2 ) ] ,
 						 [ MARGIN + ( visibleSize.width - MARGIN*2 ) , MARGIN ] ,    [ MARGIN , MARGIN ] , ] ;
 
+	var switcherLabelY = visibleSize.height - 40 					 
+	var switcherLables = []
+	for ( var i=0;i< node_pos.length ; i++ ) {
+		var label =  createLabel( "0" , 32 , cc.color(255,255,255) ) 
+		label.setPosition( cc.p( 150+ (label.getContentSize().width+4)*i ,   switcherLabelY  ) ) ;
+		layer.addChild( label );	
+
+		switcherLables[i] = label 
+	}
+
+	var label_equal = createLabel( "=" , 32 , cc.color(255,255,255) ) 
+	label_equal.setPosition( cc.p( 150+ (label_equal.getContentSize().width+4)* 4 ,   switcherLabelY  ) ) ;
+	layer.addChild( label_equal );	
+
+
+	var label_result = createLabel( "0" , 32 , cc.color(255,255,255) ) 
+	label_result.setPosition( cc.p( 150+ (label_result.getContentSize().width+4)* 6 ,   switcherLabelY  ) ) ;
+	layer.addChild( label_result );	
+
+	var x_offset = 0
+	var y_offset = -20
 	var common_nodes = []
 
 	for ( var i=0;i< node_pos.length ; i++ ) {
-			var x0 = node_pos[i][0]
-			var y0 = node_pos[i][1]
-			var x1 = node_pos[(i+1)%node_pos.length][0]
-			var y1 = node_pos[(i+1)%node_pos.length][1]
+			var x0 = node_pos[i][0] +x_offset
+			var y0 = node_pos[i][1] +y_offset
+			var x1 = node_pos[(i+1)%node_pos.length][0] +x_offset
+			var y1 = node_pos[(i+1)%node_pos.length][1] +y_offset
 
 			
 			var node=   createImageView ( g_resources.ui_white_cicle  ,   cc.p( (x0+x1)/2, (y0+y1)/2  )  , 24, 24   )    	
@@ -33,9 +54,11 @@ function createMSLayer() {
 			common_nodes[i] = node
 	}
 
+	var control_nodes = []
+
 	for ( var i=0;i< node_pos.length ; i++ ) {
-			var x = node_pos[i][0]
-			var y = node_pos[i][1]
+			var x = node_pos[i][0] +x_offset
+			var y = node_pos[i][1] +y_offset
 			draw.drawSegment(cc.p( 0 , y), cc.p( visibleSize.width , y  ), 1,  cc.color(64, 64, 64, 255));
 			draw.drawSegment(cc.p( x , 0), cc.p( x , visibleSize.height ), 1,  cc.color(64, 64, 64, 255));
 
@@ -49,8 +72,20 @@ function createMSLayer() {
 															var link_node = sender.linkNodes[index]
 															link_node.isOn  = !link_node.isOn  
 															link_node.setColor( link_node.isOn ? cc.color( 255,255,255) : cc.color( 80,80,80) )
-
 														}
+
+														var result = 0
+														for ( var index in control_nodes ) {
+															var ctl_node  = control_nodes[index]
+															if (ctl_node.isOn) {
+																result += 1 << ( 3-index )
+															}
+														}
+
+
+														switcherLables[sender.index ].setString( sender.isOn ? "1" : "0" )
+
+														label_result.setString( result )
 													}
 												)    
 			controlNode.index = i
@@ -61,6 +96,12 @@ function createMSLayer() {
 
 
 			layer.addChild( controlNode );
+
+			var label =  createLabel( "" + i  , 48 , cc.color( 200,0,0 ) ) 
+			label.setPosition( cc.p( controlNode.getContentSize().width/2,  controlNode.getContentSize().height/2 ) )
+			controlNode.addChild( label );
+
+			control_nodes[i] = controlNode;
 
 	}
  
