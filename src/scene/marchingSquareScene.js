@@ -4,6 +4,9 @@
 function createMSLayer() {
 	var layer = cc.Layer.create(  )
 
+	var draw_triangle = new cc.DrawNode(); 
+	layer.addChild( draw_triangle );
+
 	var draw = new cc.DrawNode();
     layer.addChild( draw );
 
@@ -86,6 +89,20 @@ function createMSLayer() {
 														switcherLables[sender.index ].setString( sender.isOn ? "1" : "0" )
 
 														label_result.setString( result )
+
+														//draw triangle 
+														var visibleNodes = []
+														for ( var index in all_nodes ) {
+															var node = all_nodes[index] 
+															if (node.isOn) {
+																visibleNodes[ visibleNodes.length ] = node
+															} 
+														}
+														var nVisibleNode=  visibleNodes.length
+														cc.log( "visible node number: " , nVisibleNode )
+
+														
+														draw_triangle												
 													}
 												)    
 			controlNode.index = i
@@ -104,6 +121,14 @@ function createMSLayer() {
 			control_nodes[i] = controlNode;
 
 	}
+
+	var all_nodes = [  ]
+	for (var i=0 ; i< 4 ; i++ ) {
+		all_nodes[i*2] = control_nodes[i]
+		all_nodes[i*2+1] = common_nodes[i]
+	}
+
+
  
 
 	return layer
