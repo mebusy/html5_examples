@@ -10,8 +10,11 @@
           window.onload = function(){
               cc.game.onStart = function(){
 
-                  origin = cc.director.getVisibleOrigin();  // 设置或获取游戏世界可视窗口的原点和大小
-                  visibleSize = cc.director.getVisibleSize();
+                      cc.view.setDesignResolutionSize(400, 400, cc.ResolutionPolicy.SHOW_ALL );
+                      cc.view.resizeWithBrowserSize(true);
+
+                      origin = cc.director.getVisibleOrigin();  // 设置或获取游戏世界可视窗口的原点和大小
+                      visibleSize = cc.director.getVisibleSize();
                   
                   cc.LoaderScene.preload( all_preload_res , function () {
 
