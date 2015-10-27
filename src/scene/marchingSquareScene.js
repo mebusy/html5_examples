@@ -14,31 +14,31 @@ function createMSLayer() {
 
 
 	//cc.log( visibleSize.width, visibleSize.height )
-	var MARGIN=80
+	var MARGIN=140
 	var node_pos = [  [ MARGIN , MARGIN + ( visibleSize.height - MARGIN*2 ) ] , [ MARGIN + ( visibleSize.width - MARGIN*2 ) , MARGIN + ( visibleSize.height - MARGIN*2 ) ] ,
 						 [ MARGIN + ( visibleSize.width - MARGIN*2 ) , MARGIN ] ,    [ MARGIN , MARGIN ] , ] ;
 
-	var switcherLabelY = visibleSize.height - 40 					 
+	var switcherLabelY = visibleSize.height - 40*1.5 					 
 	var switcherLables = []
 	for ( var i=0;i< node_pos.length ; i++ ) {
 		var label =  createLabel( "0" , 32 , cc.color(255,255,255) ) 
-		label.setPosition( cc.p( 150+ (label.getContentSize().width+4)*i ,   switcherLabelY  ) ) ;
+		label.setPosition( cc.p( 150*1.5 + (label.getContentSize().width+4)*i ,   switcherLabelY  ) ) ;
 		layer.addChild( label );	
 
 		switcherLables[i] = label 
 	}
 
 	var label_equal = createLabel( "=" , 32 , cc.color(255,255,255) ) 
-	label_equal.setPosition( cc.p( 150+ (label_equal.getContentSize().width+4)* 4 ,   switcherLabelY  ) ) ;
+	label_equal.setPosition( cc.p( 150*1.5 + (label_equal.getContentSize().width+4)* 4 ,   switcherLabelY  ) ) ;
 	layer.addChild( label_equal );	
 
 
 	var label_result = createLabel( "0" , 32 , cc.color(255,255,255) ) 
-	label_result.setPosition( cc.p( 150+ (label_result.getContentSize().width+4)* 6 ,   switcherLabelY  ) ) ;
+	label_result.setPosition( cc.p( 150*1.5 + (label_result.getContentSize().width+4)* 6 ,   switcherLabelY  ) ) ;
 	layer.addChild( label_result );	
 
 	var x_offset = 0
-	var y_offset = -20
+	var y_offset = -20*1.5
 	var common_nodes = []
 
 	for ( var i=0;i< node_pos.length ; i++ ) {

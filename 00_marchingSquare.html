@@ -5,12 +5,12 @@
     <script type="text/javascript" src="cocos2d-js-v3.8-c.js" charset="UTF-8"></script>
 </head>
 <body>   
-    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <canvas id="gameCanvas" width="600" height="600"></canvas>
     <script type="text/javascript">
           window.onload = function(){
               cc.game.onStart = function(){
 
-                      cc.view.setDesignResolutionSize(400, 400, cc.ResolutionPolicy.SHOW_ALL );
+                      cc.view.setDesignResolutionSize(600, 600, cc.ResolutionPolicy.SHOW_ALL );
                       cc.view.resizeWithBrowserSize(true);
 
                       origin = cc.director.getVisibleOrigin();  // 设置或获取游戏世界可视窗口的原点和大小
