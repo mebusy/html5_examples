@@ -5,6 +5,7 @@ var g_resources = {
         _9slice_button_png   : "res/UI/9slice_button.png",
         ui_empty_png   : "res/UI/ui_empty.png",
         ui_dividing_line_png : "res/UI/ui_dividing_line.png",
+        ui_white_cicle : "res/UI/ui_white_cicle.png",
     };
     
 

@@ -84,14 +84,30 @@ function create9SliceImageView ( filename  , size , pos ) {
     return imageView
 }
 
-function createImageView ( filename  , length , pos ) {
+function createImageView ( filename  ,  pos ,  lengthX , lengthY , func_callBack ) {
     var imageView = ccui.ImageView.create()
     imageView.setAnchorPoint(cc.p(0.5,0.5))
     imageView.loadTexture( filename )
     //imageView.setSize( length / imageView.getContentSize().width )
     //imageView.setSize(cc.size(length, 4))
-    imageView.setScaleX(length/imageView.getContentSize().width)
+
+    if ( lengthX ) {
+        imageView.setScaleX(lengthX/imageView.getContentSize().width)
+    }
+    if ( lengthY ) {
+        imageView.setScaleY(lengthY/imageView.getContentSize().height)
+    }    
     imageView.setPosition( pos )
+
+    if (func_callBack) {  
+        imageView.setTouchEnabled(true)
+        imageView.addTouchEventListener( function(sender,eventType) { 
+            if (eventType == ccui.TouchEventType.ended){
+                func_callBack( sender , eventType ) 
+            }
+        } )
+    }
+
 
     return imageView
 }
