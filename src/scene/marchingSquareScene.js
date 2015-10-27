@@ -48,7 +48,7 @@ function createMSLayer() {
 			var y1 = node_pos[(i+1)%node_pos.length][1] +y_offset
 
 			
-			var node=   createImageView ( g_resources.ui_white_cicle  ,   cc.p( (x0+x1)/2, (y0+y1)/2  )  , 24, 24   )    	
+			var node=   createImageView ( g_resources.ui_white_cicle  ,   cc.p( (x0+x1)/2, (y0+y1)/2  )  , 32, 32   )    	
 			layer.addChild( node );		
 
 			node.isOn = false
@@ -66,7 +66,7 @@ function createMSLayer() {
 			draw.drawSegment(cc.p( x , 0), cc.p( x , visibleSize.height ), 1,  cc.color(64, 64, 64, 255));
 
 			
-			var controlNode=   createImageView ( g_resources.ui_white_cicle  ,   cc.p(x,y)  , 48, 48 , function(sender,eventType) { 
+			var controlNode=   createImageView ( g_resources.ui_white_cicle  ,   cc.p(x,y)  , 64, 64 , function(sender,eventType) { 
 														//cc.log( sender.index )
 														sender.isOn = !sender.isOn  
 														sender.setColor( sender.isOn ? cc.color( 255,255,255) : cc.color( 80,80,80) )
