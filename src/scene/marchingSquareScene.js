@@ -101,8 +101,12 @@ function createMSLayer() {
 														var nVisibleNode=  visibleNodes.length
 														cc.log( "visible node number: " , nVisibleNode )
 
-														
-														draw_triangle												
+														//clear
+														draw_triangle.clear()
+
+														var vertices = [ visibleNodes[0].getPosition() ,  visibleNodes[1].getPosition() ,  visibleNodes[2].getPosition()  ];
+       			 										draw_triangle.drawPoly(vertices, null, 3 , cc.color( 128, 128, 128 ));
+																									
 													}
 												)    
 			controlNode.index = i
