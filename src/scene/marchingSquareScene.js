@@ -67,7 +67,7 @@ function createMSLayer() {
 
 			
 			var controlNode=   createImageView ( g_resources.ui_white_cicle  ,   cc.p(x,y)  , 48, 48 , function(sender,eventType) { 
-														cc.log( sender.index )
+														//cc.log( sender.index )
 														sender.isOn = !sender.isOn  
 														sender.setColor( sender.isOn ? cc.color( 255,255,255) : cc.color( 80,80,80) )
 
@@ -99,14 +99,17 @@ function createMSLayer() {
 															} 
 														}
 														var nVisibleNode=  visibleNodes.length
-														cc.log( "visible node number: " , nVisibleNode )
+														//cc.log( "visible node number: " , nVisibleNode )
 
 														//clear
 														draw_triangle.clear()
-
-														var vertices = [ visibleNodes[0].getPosition() ,  visibleNodes[1].getPosition() ,  visibleNodes[2].getPosition()  ];
-       			 										draw_triangle.drawPoly(vertices, null, 3 , cc.color( 128, 128, 128 ));
-																									
+														if (nVisibleNode>=3) {
+															for( var index =1 ;index< nVisibleNode-1; index++ ) {
+																var vertices = [ visibleNodes[0].getPosition() ,  
+																			visibleNodes[index].getPosition() ,  visibleNodes[index+1].getPosition()  ];
+																draw_triangle.drawPoly(vertices, cc.color( 100, 100, 100 ), 3 , cc.color( 128, 128, 128 ));
+															}
+														}
 													}
 												)    
 			controlNode.index = i
@@ -118,7 +121,7 @@ function createMSLayer() {
 
 			layer.addChild( controlNode );
 
-			var label =  createLabel( "" + i  , 48 , cc.color( 200,0,0 ) ) 
+			var label =  createLabel( "" + (i+1)  , 48 , cc.color( 200,0,0 ) ) 
 			label.setPosition( cc.p( controlNode.getContentSize().width/2,  controlNode.getContentSize().height/2 ) )
 			controlNode.addChild( label );
 
